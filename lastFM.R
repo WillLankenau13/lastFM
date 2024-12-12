@@ -8,8 +8,6 @@ library("stringr")
 #make it faster
 #make sure no possible entire blank 7/30/90 days span that is left out of listening levels
 
-#shizzam shizzam
-
 scrobbles <- read_csv("~/R Stuff/lastFM/raw_data.csv") %>% 
   mutate(date_time = parse_datetime(utc_time, "%d %b %Y, %H:%M"))
 
