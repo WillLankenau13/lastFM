@@ -115,7 +115,8 @@ percents <- overall_tracks %>%
   left_join(max_ninety_days_tracks_per, by = c("track", "artist")) %>% 
   left_join(max_oneeighty_days_tracks_per, by = c("track", "artist")) %>% 
   left_join(max_threesixfive_days_tracks_per, by = c("track", "artist")) %>% 
-  select(track, artist, rate_30, rate_90, rate_180, rate_365)
+  select(track, artist, rate_30, rate_90, rate_180, rate_365) %>% 
+  filter(!is.na(track))
 
 percents[is.na(percents)] <- 0
 percents <- percents %>% 

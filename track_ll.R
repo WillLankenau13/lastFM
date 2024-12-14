@@ -7,14 +7,16 @@ library("stringr")
 ll_one_day_tracks <- one_day_tracks %>% 
   select(track, artist, date, scrobbles) %>% 
   arrange(date) %>% 
-  pivot_wider(names_from = date, values_from = scrobbles)
+  pivot_wider(names_from = date, values_from = scrobbles) %>% 
+  filter(!is.na(track))
 ll_one_day_tracks[is.na(ll_one_day_tracks)] <- 0
 
 
 ll_seven_days_tracks <- seven_days_tracks %>% 
   select(track, artist, end_date, scrobbles) %>% 
   arrange(end_date) %>% 
-  pivot_wider(names_from = end_date, values_from = scrobbles)
+  pivot_wider(names_from = end_date, values_from = scrobbles)%>% 
+  filter(!is.na(track))
 ll_seven_days_tracks[is.na(ll_seven_days_tracks)] <- 0
 ll_seven_days_tracks <- ll_seven_days_tracks %>% 
   arrange(track)%>% 
@@ -24,7 +26,8 @@ ll_seven_days_tracks <- ll_seven_days_tracks %>%
 ll_thirty_days_tracks <- thirty_days_tracks %>% 
   select(track, artist, end_date, scrobbles) %>% 
   arrange(end_date) %>% 
-  pivot_wider(names_from = end_date, values_from = scrobbles)
+  pivot_wider(names_from = end_date, values_from = scrobbles) %>% 
+  filter(!is.na(track))
 ll_thirty_days_tracks[is.na(ll_thirty_days_tracks)] <- 0
 ll_thirty_days_tracks <- ll_thirty_days_tracks %>% 
   arrange(track)%>% 
@@ -34,17 +37,18 @@ ll_thirty_days_tracks <- ll_thirty_days_tracks %>%
 ll_ninety_days_tracks <- ninety_days_tracks %>% 
   select(track, artist, end_date, scrobbles) %>% 
   arrange(end_date) %>% 
-  pivot_wider(names_from = end_date, values_from = scrobbles)
+  pivot_wider(names_from = end_date, values_from = scrobbles) %>% 
+  filter(!is.na(track))
 ll_ninety_days_tracks[is.na(ll_ninety_days_tracks)] <- 0
 ll_ninety_days_tracks <- ll_ninety_days_tracks %>% 
-  arrange(track)%>% 
+  arrange(track) %>% 
   filter(track != "placeholder")
 
 
 cumulative_scrobbles_by_track <- ll_one_day_tracks
 cumulative_scrobbles_by_track <- cumulative_scrobbles_by_track %>% 
   filter(track != "placeholder") %>% 
-  arrange(track)
+  arrange(track) 
 track_ll <- cumulative_scrobbles_by_track
 
 
