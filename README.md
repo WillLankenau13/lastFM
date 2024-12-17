@@ -1,6 +1,6 @@
 # Introduction
 
-This repository gives information regarding a user's LastFM data. The main feature is it gives LastFM scrobbling "records," for example, what was the most a user listened to a given artist in 30 days. 
+This repository gives information regarding a user's LastFM data. The main feature is it gives LastFM scrobbling "records," for example, what was the most a user listened to an artist in 30 days. 
 
 
 # LastFM
