@@ -1,4 +1,6 @@
 
+
+#groups scrobbles by track name; i.e. combines different tracks with same names
 distinct_tracks <- overall_tracks %>% 
   select(track, artist, scrobbles) %>% 
   mutate(track = tolower(track))

@@ -3,16 +3,17 @@ library("lubridate")
 library("incidence")
 library("stringr")
 
-#fix album NA with Dingga and other
-#make another 7 days scrobbles that's unique (not overlapping days), take the original 7 days and loop through it, putting each start and end date in a list and check to see if either start or end date are between any of the start and end dates of said list
-#make it faster
-#make sure no possible entire blank 7/30/90 days span that is left out of listening levels
 
+####Data
 scrobbles <- read_csv("~/R Stuff/lastFM/raw_data.csv") %>% 
   mutate(date_time = parse_datetime(utc_time, "%d %b %Y, %H:%M"))
 
+
+
+#Track name error
 scrobbles$track[scrobbles$track == "Girls’ Capitalism"] <- "Girls' Capitalism"
 
+#Date and time tidying
 scrobbles$date_time <- with_tz(scrobbles$date_time, tzone = "America/New_York")
 scrobbles <- mutate(scrobbles, date = as_date(date_time))
 
